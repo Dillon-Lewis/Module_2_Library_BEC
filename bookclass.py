@@ -8,9 +8,9 @@
 # 6. Back to main menu
 
 Book_list = {
-'Dune': {"author" : 'Frank Herbert', "Genre": 'Science Fiction', "Summary" : 'The battle for spice is on and there can only be one victor in charge of the spice fields', "Available" : True},
-'The Hobbit': {"author" :  'JRR Tolkien', 'Genre' : 'Fantasy', 'Summary' : 'A group of friend must travel through Middle Earth to defeat a dragon and save the Dwarven Homeland','Available': True},
-'Saxaphonie': {"author": 'Lisa Simpson', 'Genre': 'Romance', 'Summary' : 'A women falls in love wiht an Orchestrator that has a hidden past that slow becomes revieled', 'Available' : True}                
+'Dune': {"author" : 'Frank Herbert', "Genre": 'Science Fiction', "Summary" : 'The battle for spice is on and there can only be one victor in charge of the spice fields', "Available" : 'YES'},
+'The Hobbit': {"author" :  'JRR Tolkien', 'Genre' : 'Fantasy', 'Summary' : 'A group of friend must travel through Middle Earth to defeat a dragon and save the Dwarven Homeland','Available': 'YES'},
+'Saxaphonie': {"author": 'Lisa Simpson', 'Genre': 'Romance', 'Summary' : 'A women falls in love wiht an Orchestrator that has a hidden past that slow becomes revieled', 'Available' : 'YES'}                
     }
 
 class Book():
@@ -28,12 +28,13 @@ class Book():
             book = input("Please enter the full name of the Book you are searching for: \n").title()
             if book in Book_list:
                 print(Book_list[book])
+                break
             else:
                 print(f'{book} was not found in the Encyclopedia, please try again')
            
-    def change_rental(self):
-        while True:
-            book_search = input(" Please enter the full name of the book you are searching for: ").title()
+    # def change_rental(self):
+    #     while True:
+    #         book_search = input(" Please enter the full name of the book you are searching for: ").title()
     
     def add_book():
         while True:
@@ -44,6 +45,41 @@ class Book():
             Book_list[add_title] = {'author': add_author, "Genre" : add_genre, "Summary" : add_summary}
             print(f"{add_title} by {add_author} has been added to the Encyclopedia")
             return
+        
+    def rental():
+        while True:
+            book = input("Please enter the title of the book you would like to rent out: \n")
+            if book in Book_list:
+                if Book_list[book]["Available"] == "YES":
+                    Book_list[book]["Available"] = "NO"
+                    print(f'Thank you got renting {book} from Springfield Library!')
+                    return
+                elif Book_list[book]["Available"] == "NO":
+                    print(f"{book} is currently out for rent, come back and check at a later date.")
+                    return
+            else:
+                print("Please double check the Encyclopedia to make sure we have the book you are looking for")
+                break
+                
+    def return_book():
+        while True:
+            returned = input("Please enter the title of the book you would like to return: \n")
+            if returned in Book_list:
+                if Book_list[returned]["Available"] == "NO":
+                    Book_list[returned]["Available"] = "YES"
+                    print(f'Thank you got renting {returned} from Springfield Library, we hope you liked it!')
+                    return
+                elif Book_list[returned]["Available"] == "NO":
+                    print(f"{returned} is currently out for rent, come back and check at a later date.")
+                    return
+            else:
+                print("Are you sure you rented the book from us? Try again with entering the title")
+                break
+                
+
+    
+                    
+
 
     def print_books():
         print(Book_list)            

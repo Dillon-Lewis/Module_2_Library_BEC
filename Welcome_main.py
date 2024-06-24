@@ -44,9 +44,9 @@ Welcome to the Book Encyclopedia, what would you like to do:
         if book_menu == '1':
             Book.add_book()
         elif book_menu == '2':
-            pass
+            Book.rental()
         elif book_menu == '3': 
-            pass
+            Book.return_book()
         elif book_menu == '4':
             Book.book_search()
         elif book_menu == '5':
